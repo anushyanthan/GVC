@@ -2,9 +2,12 @@ from keras.models import load_model  # TensorFlow is required for Keras to work
 from PIL import Image, ImageOps  # Install pillow instead of PIL
 import numpy as np
 import cv2
+from pynput.keyboard import Key,Controller
+import time
 
 # opening camera
 cam = cv2.VideoCapture(0)
+keyboard = Controller()
 
 # Disable scientific notation for clarity
 np.set_printoptions(suppress=True)
@@ -53,5 +56,22 @@ while(True):
     confidence_score = prediction[0][index]
 
     # Print prediction and confidence score
-    print("Class:", class_name[2:], end="")
-    # print("Confidence Score:", confidence_score)
+    # print("Class:", class_name[2:], end="")
+    # print("Confidence Score:", confidence_score
+
+    # pred is a result of the mdoel
+    pred = class_name[2:][0]
+    # print(pred)
+
+    if pred=='+' :
+        keyboard.press(Key.media_volume_up)
+        keyboard.release(Key.media_volume_up)
+        time.sleep(0.1)
+    elif pred=='-':
+        keyboard.press(Key.media_volume_down)
+        keyboard.release(Key.media_volume_down)
+        time.sleep(0.1)
+    else:
+        pass
+
+

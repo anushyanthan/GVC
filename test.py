@@ -1,8 +1,7 @@
-import cv2
+from pynput.keyboard import Key,Controller
+import time
 
-# opening camera
-cam = cv2.VideoCapture(0)
-# capturing Image
-result, image = cam.read()
-
-cv2.imwrite("img.jpg", image)
+keyboard = Controller()
+keyboard.press(Key.media_volume_up)
+keyboard.release(Key.media_volume_up)
+time.sleep(0.1)
